@@ -137,3 +137,40 @@ echo $language == "spanish" ? "hola\n" : "hello\n";
 echo $IDoNotExist ?? "Variable not set\n";
 echo "hello\n" ?? "Variable not set\n";
 echo $IDoNotExist ?? $IExist ?? "Neither variable is set\n";
+
+// Loops
+$num = 5;
+while ($num > 0) {
+  echo "While loop $num\n";
+  --$num;
+}
+$num = 0;
+do {
+  echo "Do while $num\n";
+  ++$num;
+} while ($num < 5);
+
+for ($i = 0; $i < 5; $i++) {
+  echo "For loop $i\n";
+}
+
+$set = [1,2,3,4,5];
+foreach ($set as $num) {
+  echo "Array value $num\n";
+}
+
+$values = ['one','two','three'];
+foreach ($values as $value) {
+  if ($value === 'two') {
+    break;
+  }
+  echo "Break $value\n";
+
+$values = ['one', 'skip', 'three'];
+foreach ($values as $value) {
+    if ($value === 'skip') {
+      continue;
+    }
+    echo "Continue $value\n";
+  }
+}
