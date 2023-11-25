@@ -274,3 +274,86 @@ class Racecar extends Vehicle {
 
 $racecar = new Racecar();
 $racecar->drive();
+
+// Private Objects
+class Phone {
+  private $number;
+
+  public function setNumber($number) {
+    $this->number = $number;
+  }
+}
+
+$phone = new Phone();
+// $phone->number = '4002-8922'; // Don't work
+$phone->setNumber('4002-8922');
+
+// private brings more control
+class Phone2 {
+  private $number;
+
+  function setNumber($number) {
+    // if start with '7' don't create
+    if (substr($number, 0, 1) !== '7') {
+      $this->number = $number;
+    }
+  }
+}
+
+class Phone3 {
+  private $number;
+
+  protected $caller;
+
+  public function setNumber($number) {
+    $this->number = $number;
+  }
+}
+// protected can be inherit but private not
+class Smartphone extends Phone3 {
+  public function setCaller($caller) {
+    $this->caller = $caller;
+  }
+  // Don't work  
+  // public function showNumber() {
+  //   echo $this->number;
+  // }
+}
+
+// Constructor Objects
+
+class Hat {
+  public $color;
+
+  public function setColor($color)
+  {
+    $this->color = $color;
+  }
+}
+
+class Ballcap
+{
+  public $color;
+
+  public function __construct($color)
+  {
+    $this->color = $color;
+  }
+}
+
+$hat = new Hat();
+$hat->setColor('Blue');
+
+$ballcap = new Ballcap('Blue');
+
+// constructor do not return value because the return value is always the object
+class Tophat
+{
+  public function __construct($color)
+  {
+    return $color;
+  }
+}
+// $tophat now holds an instance of Tophat, not the string “Grey”.
+$tophat = new Tophat('Grey');
+
