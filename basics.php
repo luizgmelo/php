@@ -174,3 +174,103 @@ foreach ($values as $value) {
     echo "Continue $value\n";
   }
 }
+
+// Arrays
+$taskList = array('grocery store', 'change car oil');
+$groceryList = ['bread', 'milk', 'eggs'];
+echo $groceryList[0] . "\n";
+echo $groceryList[1] . "\n";
+
+$car = ["make" => "Toyota", "model" => "Camry"];
+echo $car["model"] . "\n";
+
+// Functions
+function hello_world() {
+  echo "Hello, World!\n";
+}
+hello_world();
+
+function greet($firstname, $secondname) {
+  echo "Hello $firstname $secondname\n";
+}
+greet("Luiz", "Guilherme");
+
+function capitalize($value) {
+  return mb_strtoupper($value);
+}
+$animal = capitalize("Dog");
+echo "$animal\n";
+
+$sum = function ($a, $b) {
+  return $a + $b;
+};
+
+echo $sum(1, 2) . "\n";
+
+// Object-oriented programming
+class Car {
+
+}
+$car = new Car();
+
+class Bicycle {
+  public $color;
+}
+$bike = new Bicycle();
+$bike->color = 'Blue';
+echo $bike->color . "\n";
+
+$redBike = new Bicycle();
+$redBike->color = "Red";
+echo $redBike->color . " Bike Object\n";
+
+class Tricycle {
+  public $color;
+
+  public function echoColor() {
+    echo $this->color . "\n";
+  }
+}
+
+$bike = new Tricycle();
+$bike->color = "Yellow";
+$bike->echoColor();
+
+// Extend objects
+class Vehicle {
+  public function drive() {
+    echo "driving...\n";
+  }
+}
+
+class Truck extends Vehicle {}
+$truck = new Truck();
+$truck->drive();
+
+class Tractor extends Vehicle {
+  public function drive() {
+    echo "driving slowly...\n";
+  }
+}
+
+$tractor = new Tractor();
+$tractor->drive();
+
+class Motocycle extends Vehicle {
+  public function pushPedal() {
+    $this->drive();
+  }
+}
+
+$motocycle = new Motocycle();
+$motocycle->pushPedal();
+
+class Racecar extends Vehicle {
+  public function drive() {
+    parent::drive();
+    echo "driving even fast...\n";
+  }
+}
+
+$racecar = new Racecar();
+$racecar->drive();
