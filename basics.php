@@ -357,3 +357,135 @@ class Tophat
 // $tophat now holds an instance of Tophat, not the string “Grey”.
 $tophat = new Tophat('Grey');
 
+class House {
+  public $color;
+
+  public function __construct($color)
+  {
+    $this->color = $color;
+  }
+}
+
+$house = new House('Green');
+
+class Skyscraper
+{
+  private static $popularColor;
+  public $color;
+
+  public static function setDefaultColor($color)
+  {
+    self::$popularColor = $color;
+  }
+
+  public function __construct()
+  {
+    $this->color = self::$popularColor;
+  }
+}
+
+Skyscraper::setDefaultColor('Grey');
+$skyscraper = new Skyscraper();
+echo $skyscraper->color . "\n";
+
+class TinyHouse
+{
+  private $color;
+  private $wheels;
+  private $trailer;
+
+  public static function build($color, $wheels, $trailer)
+  {
+    return new self($color, $wheels, $trailer);
+  }
+
+  public function __construct($color, $wheels, $trailer)
+  {
+    $this->color = $color;
+    $this->wheels = $wheels;
+    $this->trailer = $trailer;
+  }
+}
+
+$house = TinyHouse::build('Blue', 4, true);
+
+// Interfaces
+// An interface defines what methods a class should have.
+interface Chair
+{
+  public function setColor($color);
+  public function setLegs($number);
+}
+
+class Recliner implements Chair
+{
+  private $color;
+  private $legs;
+
+  public function setColor($color)
+  {
+    $this->color = $color;
+  }
+
+  public function setLegs($number)
+  {
+    $this->legs = $number;
+  }
+}
+
+interface Payment
+{
+  public function charge($amount);
+}
+
+class CreditCard implements Payment
+{
+  public function charge($amount)
+  {
+    // contacts a credit card payment provider;
+  }
+}
+
+$creditCard = new CreditCard();
+if ($creditCard instanceof Payment) {
+  $creditCard->charge(25);
+}
+
+// Inheriting an interface
+// Abstract classes are similar to interfaces
+// However, an abstract class can also have normal methods.
+abstract class CellPhone
+{
+  abstract public function unlock();
+
+  public function turnOn()
+  {
+    echo "Holding power button...\n";
+  }
+}
+
+class iPhone extends CellPhone
+{
+  public function unlock()
+  {
+    echo "Touch fingerprint reader...\n";
+  }
+}
+
+class Android extends CellPhone
+{
+  public function unlock()
+  {
+    echo "Typing passcode...\n";
+  }
+}
+
+$iPhone = new iPhone();
+$iPhone->turnOn();
+$iPhone->unlock();
+
+$android = new Android();
+$android->turnOn();
+$android->unlock();
+
+// $cellPhone = new CellPhone(); // cause an error
