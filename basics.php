@@ -489,3 +489,38 @@ $android->turnOn();
 $android->unlock();
 
 // $cellPhone = new CellPhone(); // cause an error
+
+// Throwing erros
+
+class Processor
+{
+  public function charge($creditCard)
+  {
+    if (strlen($creditCard) !== 16) {
+      throw new Exception('Credit card is not right');
+    }
+  }
+}
+
+$processor = new Processor();
+try {
+  $processor->charge('123456');
+} catch (Exception $e){
+  echo $e->getMessage() . "\n";
+}
+
+class MyCustomExceptions extends Exception {}
+
+try {
+  throw new MyCustomExceptions('I am a custom exception');
+} catch (MyCustomExceptions $e) {
+  echo "Caught MyCustomExceptions\n";
+}
+
+try {
+  throw new MyCustomExceptions('I am being thrown again');
+} catch (MyCustomExceptions $e) {
+    echo "MyCustomException was caught\n";
+} catch (Exception $e) {
+  echo "Just in case a different exception is thrown\n";
+}
